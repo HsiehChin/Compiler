@@ -23,6 +23,12 @@
 "P"|"p"     {return PERM;}    
 ","     {return COMMA;}
 
+"mod"   {return MOD;}
+"%"     {return PERCENT;}
+"ceil"     {return CEIL;}
+"floor"     {return FLOOR;}
+"^"     {return POW;}
+
 "ANS"   {return ANS;}
 
 [0-9]+ 	{sscanf(yytext,"%lf",&yylval);return NUMBER;}

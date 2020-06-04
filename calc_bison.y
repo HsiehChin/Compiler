@@ -1,6 +1,7 @@
 %{
 #include <stdio.h>
 #include <ctype.h>
+#include<math.h>
 #include "calc_function.h"
 #define YYSTYPE double
 static int answer = 0;
@@ -15,6 +16,7 @@ static int answer = 0;
 %token COMB PERM
 %token EOL
 %token ANS
+%token MOD PERCENT CEIL FLOOR POW
 
 %%
 
@@ -25,13 +27,18 @@ calclist:/**/
 exp:factor {$$ = $1;}
   |exp ADD factor{$$=$1+$3;}
   |exp SUB factor{$$=$1-$3;}
+  |exp PERCENT{$$=0.01*$1;}
   |SUB factor{$$=-$2;}
   |ADD factor{$$= $2;}
   ;
 
 factor:term {$$=$1;}
   |factor MUL term{$$=$1*$3;}
-  |factor DIV term{$$=$1/$3;}
+  |factor DIV term{if($3 == 0) 
+                    yyerror(0, "divide by zero");
+                    $$=$1/$3;}
+  |factor MOD term{$$=(int)$1%(int)$3;}
+  |factor POW term{$$=pow($1, $3);}
   ;
 
 term:NUMBER {$$=$1;}
@@ -42,6 +49,8 @@ term:NUMBER {$$=$1;}
   |PERM LEFT_BRACKET exp COMMA exp RIGHT_BRACKET{$$ = permutation($3, $5);}
   |COMB LEFT_BRACKET exp COMMA exp RIGHT_BRACKET{$$ = combination($3, $5);}
   |FACTORIAL{ $$ = factorial($1);}
+  |CEIL LEFT_BRACKET exp RIGHT_BRACKET{$$=$3>=0?(int)$3+1:(int)$3;}
+  |FLOOR LEFT_BRACKET exp RIGHT_BRACKET{$$=$3>=0?(int)$3:(int)$3-1;}
   ;
 
 %%

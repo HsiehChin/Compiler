@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <ctype.h>
 #include "calc_function.h"
+#define YYSTYPE double
 static int answer = 0;
 
 %}
@@ -18,7 +19,7 @@ static int answer = 0;
 %%
 
 calclist:/**/
-  |calclist exp EOL { answer = $2; printf("= %d\n",$2);}
+  |calclist exp EOL { answer = $2; printf("= %lf\n",$2);}
   ;
 
 exp:factor {$$ = $1;}

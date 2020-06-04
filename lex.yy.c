@@ -702,12 +702,12 @@ YY_RULE_SETUP
 case 16:
 YY_RULE_SETUP
 #line 28 "calc_flex.l"
-{yylval=atoi(yytext);return NUMBER;}
+{sscanf(yytext,"%lf",&yylval);return NUMBER;}
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
 #line 29 "calc_flex.l"
-{ return FLOAT;}
+{ sscanf(yytext,"%lf",&yylval); return NUMBER;}
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
@@ -722,7 +722,7 @@ YY_RULE_SETUP
 case 20:
 YY_RULE_SETUP
 #line 33 "calc_flex.l"
-{printf("非法字符 %c\n",*yytext);}
+{return yytext[0];}
 	YY_BREAK
 case 21:
 YY_RULE_SETUP

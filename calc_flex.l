@@ -18,6 +18,11 @@
 "tan"   {return TAN;}
 
 "!"     {return EXCLA_MARK;}
+"Decimal_to_Binary" {return DECIMAL2BINARY;}
+"Decimal_to_Octal" {return DECIMAL2OCTAL;}
+"Decimal_to_Hex" {return DECIMAL2HEX;}
+
+[0-9]+"!"  {sscanf(yytext,"%d!",&yylval); return FACTORIAL;}
 
 "C"|"c"     {return COMB;}
 "P"|"p"     {return PERM;}    
@@ -33,6 +38,7 @@
 
 [0-9]+ 	{sscanf(yytext,"%lf",&yylval);return NUMBER;}
 [0-9]+\.[0-9]+ { sscanf(yytext,"%lf",&yylval); return NUMBER;}
+[A-Z]+ 	{return ALPHABET;}
 
 \n  	{return EOL;}
 [ \t] 	{/*空白忽略*/}

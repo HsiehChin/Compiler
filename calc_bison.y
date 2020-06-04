@@ -1,18 +1,19 @@
 %{
 #include <stdio.h>
 #include <ctype.h>
-#include<math.h>
+#include <math.h>
 #include "calc_function.h"
 #define YYSTYPE double
 static int answer = 0;
 
 %}
 
-%token FLOAT NUMBER
+%token FLOAT NUMBER ALPHABET
 %token LEFT_PAREN RIGHT_PAREN COMMA EXCLA_MARK
 %token SIN COS TAN
 %token ADD SUB MUL DIV ABS
 %token COMB PERM
+%token DECIMAL2BINARY DECIMAL2OCTAL DECIMAL2HEX
 %token EOL
 %token ANS
 %token MOD PERCENT CEIL FLOOR POW
@@ -20,7 +21,13 @@ static int answer = 0;
 %%
 
 calclist:/**/
-  |calclist exp EOL { answer = $2; printf("= %lf\n",$2);}
+  |calclist exp EOL { answer = $2; printf("= %d\n",$2);}
+  |calclist digit_convert EOL {}
+  ;
+
+digit_convert:factor {$$ = $1;}
+  |DECIMAL2BINARY factor {decimal_to_binary($2);}
+  |DECIMAL2HEX factor {decimal_to_hex($2);}
   ;
 
 exp:factor {$$ = $1;}
@@ -29,6 +36,9 @@ exp:factor {$$ = $1;}
   |exp PERCENT{$$=0.01*$1;}
   |SUB factor{$$=-$2;}
   |ADD factor{$$= $2;}
+  |SIN factor {$$=sin($2);}
+  |COS factor {$$=cos($2);}
+  |TAN factor {$$=tan($2);}
   ;
 
 factor:term {$$=$1;}
@@ -62,5 +72,3 @@ yyerror(char *s)
 {
  fprintf(stderr,"error:%s\n",s);
 }
-
-

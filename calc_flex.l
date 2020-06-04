@@ -10,14 +10,14 @@
 "*"   	{return MUL;}
 "/"   	{return DIV;}
 "|"   	{return ABS;}
-"("     {return LEFT_BRACKET;}
-")"     {return RIGHT_BRACKET;}
+"("     {return LEFT_PAREN;}
+")"     {return RIGHT_PAREN;}
 
 "sin"   {return SIN;}
 "cos"   {return COS;}
 "tan"   {return TAN;}
 
-[0-9]+"!"  {sscanf(yytext,"%d!",&yylval); return FACTORIAL;}
+"!"     {return EXCLA_MARK;}
 
 "C"|"c"     {return COMB;}
 "P"|"p"     {return PERM;}    

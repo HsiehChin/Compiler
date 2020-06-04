@@ -35,9 +35,9 @@ digit_convert:exp {$$ = $1;}
   ;
 
 cmp:exp {$$=$1;}
-  |cmp GREATER factor{cmp_answer = $1 > $3? "true":"false";}
-  |cmp LESS factor{cmp_answer = $1 < $3? "true":"false";}
-  |cmp EQUAL factor{cmp_answer = $1 == $3? "true":"false";}
+  |cmp GREATER exp{cmp_answer = $1 > $3? "true":"false";}
+  |cmp LESS exp{cmp_answer = $1 < $3? "true":"false";}
+  |cmp EQUAL exp{cmp_answer = $1 == $3? "true":"false";}
 
 exp:factor {$$ = $1;}
   |exp ADD factor{$$=$1+$3;}

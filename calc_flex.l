@@ -25,11 +25,11 @@
 
 "ANS"   {return ANS;}
 
-[0-9]+ 	{yylval=atoi(yytext);return NUMBER;}
-[0-9]+\.[0-9]+ { return FLOAT;}
+[0-9]+ 	{sscanf(yytext,"%lf",&yylval);return NUMBER;}
+[0-9]+\.[0-9]+ { sscanf(yytext,"%lf",&yylval); return NUMBER;}
 
 \n  	{return EOL;}
 [ \t] 	{/*空白忽略*/}
-. 	{printf("非法字符 %c\n",*yytext);}
+. 	{return yytext[0];}
 
 %%

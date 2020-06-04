@@ -73,12 +73,13 @@
 #include <stdio.h>
 #include <ctype.h>
 #include "calc_function.h"
+#define YYSTYPE double
 static int answer = 0;
 
 
 
 /* Line 189 of yacc.c  */
-#line 82 "calc_bison.tab.c"
+#line 83 "calc_bison.tab.c"
 
 /* Enabling traces.  */
 #ifndef YYDEBUG
@@ -140,7 +141,7 @@ typedef int YYSTYPE;
 
 
 /* Line 264 of yacc.c  */
-#line 144 "calc_bison.tab.c"
+#line 145 "calc_bison.tab.c"
 
 #ifdef short
 # undef short
@@ -430,8 +431,8 @@ static const yytype_int8 yyrhs[] =
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    20,    20,    21,    24,    25,    26,    27,    28,    31,
-      32,    33,    36,    37,    38,    39,    40,    41,    42,    43
+       0,    21,    21,    22,    25,    26,    27,    28,    29,    32,
+      33,    34,    37,    38,    39,    40,    41,    42,    43,    44
 };
 #endif
 
@@ -1359,126 +1360,126 @@ yyreduce:
         case 3:
 
 /* Line 1455 of yacc.c  */
-#line 21 "calc_bison.y"
-    { answer = (yyvsp[(2) - (3)]); printf("= %d\n",(yyvsp[(2) - (3)]));;}
+#line 22 "calc_bison.y"
+    { answer = (yyvsp[(2) - (3)]); printf("= %lf\n",(yyvsp[(2) - (3)]));;}
     break;
 
   case 4:
 
 /* Line 1455 of yacc.c  */
-#line 24 "calc_bison.y"
+#line 25 "calc_bison.y"
     {(yyval) = (yyvsp[(1) - (1)]);;}
     break;
 
   case 5:
 
 /* Line 1455 of yacc.c  */
-#line 25 "calc_bison.y"
+#line 26 "calc_bison.y"
     {(yyval)=(yyvsp[(1) - (3)])+(yyvsp[(3) - (3)]);;}
     break;
 
   case 6:
 
 /* Line 1455 of yacc.c  */
-#line 26 "calc_bison.y"
+#line 27 "calc_bison.y"
     {(yyval)=(yyvsp[(1) - (3)])-(yyvsp[(3) - (3)]);;}
     break;
 
   case 7:
 
 /* Line 1455 of yacc.c  */
-#line 27 "calc_bison.y"
+#line 28 "calc_bison.y"
     {(yyval)=-(yyvsp[(2) - (2)]);;}
     break;
 
   case 8:
 
 /* Line 1455 of yacc.c  */
-#line 28 "calc_bison.y"
+#line 29 "calc_bison.y"
     {(yyval)= (yyvsp[(2) - (2)]);;}
     break;
 
   case 9:
 
 /* Line 1455 of yacc.c  */
-#line 31 "calc_bison.y"
+#line 32 "calc_bison.y"
     {(yyval)=(yyvsp[(1) - (1)]);;}
     break;
 
   case 10:
 
 /* Line 1455 of yacc.c  */
-#line 32 "calc_bison.y"
+#line 33 "calc_bison.y"
     {(yyval)=(yyvsp[(1) - (3)])*(yyvsp[(3) - (3)]);;}
     break;
 
   case 11:
 
 /* Line 1455 of yacc.c  */
-#line 33 "calc_bison.y"
+#line 34 "calc_bison.y"
     {(yyval)=(yyvsp[(1) - (3)])/(yyvsp[(3) - (3)]);;}
     break;
 
   case 12:
 
 /* Line 1455 of yacc.c  */
-#line 36 "calc_bison.y"
+#line 37 "calc_bison.y"
     {(yyval)=(yyvsp[(1) - (1)]);;}
     break;
 
   case 13:
 
 /* Line 1455 of yacc.c  */
-#line 37 "calc_bison.y"
+#line 38 "calc_bison.y"
     {(yyval)=(yyvsp[(1) - (1)]);;}
     break;
 
   case 14:
 
 /* Line 1455 of yacc.c  */
-#line 38 "calc_bison.y"
+#line 39 "calc_bison.y"
     {(yyval)=answer;;}
     break;
 
   case 15:
 
 /* Line 1455 of yacc.c  */
-#line 39 "calc_bison.y"
+#line 40 "calc_bison.y"
     {(yyval)=(yyvsp[(2) - (3)])>=0?(yyvsp[(2) - (3)]):-(yyvsp[(2) - (3)]);;}
     break;
 
   case 16:
 
 /* Line 1455 of yacc.c  */
-#line 40 "calc_bison.y"
+#line 41 "calc_bison.y"
     {(yyval)=(yyvsp[(2) - (3)]);;}
     break;
 
   case 17:
 
 /* Line 1455 of yacc.c  */
-#line 41 "calc_bison.y"
+#line 42 "calc_bison.y"
     {(yyval) = permutation((yyvsp[(3) - (6)]), (yyvsp[(5) - (6)]));;}
     break;
 
   case 18:
 
 /* Line 1455 of yacc.c  */
-#line 42 "calc_bison.y"
+#line 43 "calc_bison.y"
     {(yyval) = combination((yyvsp[(3) - (6)]), (yyvsp[(5) - (6)]));;}
     break;
 
   case 19:
 
 /* Line 1455 of yacc.c  */
-#line 43 "calc_bison.y"
+#line 44 "calc_bison.y"
     { (yyval) = factorial((yyvsp[(1) - (1)]));;}
     break;
 
 
 
 /* Line 1455 of yacc.c  */
-#line 1482 "calc_bison.tab.c"
+#line 1483 "calc_bison.tab.c"
       default: break;
     }
   YY_SYMBOL_PRINT ("-> $$ =", yyr1[yyn], &yyval, &yyloc);
@@ -1690,7 +1691,7 @@ yyreturn:
 
 
 /* Line 1675 of yacc.c  */
-#line 46 "calc_bison.y"
+#line 47 "calc_bison.y"
 
 
 main(int argc,char **argv){

@@ -9,10 +9,9 @@ static int answer = 0;
 %}
 
 %token FLOAT NUMBER
-%token LEFT_BRACKET RIGHT_BRACKET COMMA
+%token LEFT_PAREN RIGHT_PAREN COMMA EXCLA_MARK
 %token SIN COS TAN
 %token ADD SUB MUL DIV ABS
-%token FACTORIAL 
 %token COMB PERM
 %token EOL
 %token ANS
@@ -44,13 +43,13 @@ factor:term {$$=$1;}
 term:NUMBER {$$=$1;}
   |FLOAT {$$=$1;}
   |ANS   {$$=answer;}
+  |NUMBER EXCLA_MARK {$$ = factorial((int)$1);}
   |ABS exp ABS{$$=$2>=0?$2:-$2;}
-  |LEFT_BRACKET exp RIGHT_BRACKET{$$=$2;}
-  |PERM LEFT_BRACKET exp COMMA exp RIGHT_BRACKET{$$ = permutation($3, $5);}
-  |COMB LEFT_BRACKET exp COMMA exp RIGHT_BRACKET{$$ = combination($3, $5);}
-  |FACTORIAL{ $$ = factorial($1);}
-  |CEIL LEFT_BRACKET exp RIGHT_BRACKET{$$=$3>=0?(int)$3+1:(int)$3;}
-  |FLOOR LEFT_BRACKET exp RIGHT_BRACKET{$$=$3>=0?(int)$3:(int)$3-1;}
+  |LEFT_PAREN exp RIGHT_PAREN{$$=$2;}
+  |PERM LEFT_PAREN exp COMMA exp RIGHT_PAREN{$$ = permutation($3, $5);}
+  |COMB LEFT_PAREN exp COMMA exp RIGHT_PAREN{$$ = combination($3, $5);}
+  |CEIL LEFT_PAREN exp RIGHT_PAREN{$$=$3>=0?(int)$3+1:(int)$3;}
+  |FLOOR LEFT_PAREN exp RIGHT_PAREN{$$=$3>=0?(int)$3:(int)$3-1;}
   ;
 
 %%

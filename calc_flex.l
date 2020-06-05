@@ -17,7 +17,7 @@
 "cos"   {return COS;}
 "tan"   {return TAN;}
 
-[0-9]+"!"  {sscanf(yytext,"%d!",&yylval); return FACTORIAL;}
+[0-9]+"!"  {sscanf(yytext,"%lf",&yylval); return FACTORIAL;}
 
 "C"|"c"     {return COMB;}
 "P"|"p"     {return PERM;}    

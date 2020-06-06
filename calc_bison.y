@@ -5,6 +5,7 @@
 #include "calc_function.h"
 #define YYSTYPE double
 static int answer = 0;
+static char* str;
 
 %}
 
@@ -22,12 +23,13 @@ static int answer = 0;
 
 calclist:/**/
   |calclist exp EOL { answer = $2; printf("= %d\n",$2);}
-  |calclist digit_convert EOL {}
+  |calclist digit_convert EOL {printf("= %s\n", str);}
   ;
 
 digit_convert:factor {$$ = $1;}
-  |DECIMAL2BINARY factor {decimal_to_binary($2);}
-  |DECIMAL2HEX factor {decimal_to_hex($2);}
+  |DECIMAL2BINARY factor { str = decimal_to_binary($2);}
+  |DECIMAL2HEX factor { str = decimal_to_hex($2);}
+  |DECIMAL2OCTAL factor { str = decimal_to_octal($2);}
   ;
 
 exp:factor {$$ = $1;}

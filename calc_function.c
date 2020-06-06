@@ -64,16 +64,21 @@ char* decimal_to_octal(int n){
   static char d2o[2 * sizeof(n) + 1];
   int size = sizeof(n) - 1;
   int p,m,a[100];
-
+  int temp = size;
+  int i;
+  
 	for(m=0;n>0;m++)
 	{
 		a[m]=n%8;
 		n=n/8;
-    d2o[size] = a[m] + '0';
-    size--;
+    d2o[temp] = a[m] + '0';
+    temp--;
 	}
+  
+  for(i = temp ; i >= 0; i--){
+    d2o[i] = '0';
+  }
 
-  d2o[size] = '\0';
   return d2o;
 }
 

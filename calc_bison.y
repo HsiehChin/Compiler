@@ -26,10 +26,10 @@ calclist:/**/
   |calclist digit_convert EOL {printf("= %s\n", str);}
   ;
 
-digit_convert:factor {$$ = $1;}
-  |DECIMAL2BINARY factor { str = decimal_to_binary($2);}
-  |DECIMAL2HEX factor { str = decimal_to_hex($2);}
-  |DECIMAL2OCTAL factor { str = decimal_to_octal($2);}
+digit_convert:exp {$$ = $1;}
+  |DECIMAL2BINARY exp { str = decimal_to_binary($2);}
+  |DECIMAL2HEX exp { str = decimal_to_hex($2);}
+  |DECIMAL2OCTAL exp { str = decimal_to_octal($2);}
   ;
 
 exp:factor {$$ = $1;}
@@ -41,6 +41,7 @@ exp:factor {$$ = $1;}
   |SIN factor {$$=sin($2);}
   |COS factor {$$=cos($2);}
   |TAN factor {$$=tan($2);}
+  |exp EXCLA_MARK {$$ = factorial((int)$1);}
   ;
 
 factor:term {$$=$1;}
@@ -55,7 +56,6 @@ factor:term {$$=$1;}
 term:NUMBER {$$=$1;}
   |FLOAT {$$=$1;}
   |ANS   {$$=answer;}
-  |NUMBER EXCLA_MARK {$$ = factorial((int)$1);}
   |ABS exp ABS{$$=$2>=0?$2:-$2;}
   |LEFT_PAREN exp RIGHT_PAREN{$$=$2;}
   |PERM LEFT_PAREN exp COMMA exp RIGHT_PAREN{$$ = permutation($3, $5);}

@@ -22,7 +22,7 @@ static char* str;
 %%
 
 calclist:/**/
-  |calclist exp EOL { answer = $2; printf("= %d\n",$2);}
+  |calclist exp EOL { answer = $2; printf("= %lf\n",$2);}
   |calclist digit_convert EOL {printf("= %s\n", str);}
   ;
 

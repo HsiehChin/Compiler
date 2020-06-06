@@ -34,6 +34,10 @@
 "floor"     {return FLOOR;}
 "^"     {return POW;}
 
+">"     {return GREATER;}
+"<"     {return LESS;}
+"="     {return EQUAL;}
+
 "ANS"   {return ANS;}
 
 [0-9]+ 	{sscanf(yytext,"%lf",&yylval);return NUMBER;}

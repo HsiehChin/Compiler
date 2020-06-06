@@ -18,12 +18,14 @@ static char* str;
 %token EOL
 %token ANS
 %token MOD PERCENT CEIL FLOOR POW
+%token GREATER LESS EQUAL
 
 %%
 
 calclist:/**/
   |calclist exp EOL { answer = $2; printf("= %lf\n",$2);}
   |calclist digit_convert EOL {printf("= %s\n", str);}
+  |calclist cmp EOL {printf("= %s\n", str);}
   ;
 
 digit_convert:exp {$$ = $1;}
@@ -31,6 +33,11 @@ digit_convert:exp {$$ = $1;}
   |DECIMAL2HEX exp { str = decimal_to_hex($2);}
   |DECIMAL2OCTAL exp { str = decimal_to_octal($2);}
   ;
+
+cmp:exp {$$=$1;}
+  |cmp GREATER factor{cmp_answer = $1 > $3? "true":"false";}
+  |cmp LESS factor{cmp_answer = $1 < $3? "true":"false";}
+  |cmp EQUAL factor{cmp_answer = $1 == $3? "true":"false";}
 
 exp:factor {$$ = $1;}
   |exp ADD factor{$$=$1+$3;}

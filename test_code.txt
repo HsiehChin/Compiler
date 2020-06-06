@@ -1,0 +1,50 @@
+123
+-12
+-12-12
+-12*(-12)
+-12/(-2)
+|-10|
+sin(1.0)
+cos(1.0)
+tan(1.0)
+4!
+6!
+(6!)/(4!)
+P(6, 5)
+P(6, 3)
+C(8, 4)
+C(6, 3)
+10 mod 3
+10 mod 7
+10 mod 2
+90%
+-90%
+36^(1/2)
+ANS
+36^(-1/2)
+ceil(-4.3)
+ceil(4.3)
+floor(-4.3)
+floor(4.3)
+10^4
+ANS
+10^(-1)
+ANS
+Decimal_to_Binary(2)
+Decimal_to_Binary(12)
+Decimal_to_Binary(20)
+Decimal_to_Octal(0)
+Decimal_to_Octal(8)
+Decimal_to_Octal(16)
+Decimal_to_Hex(4)
+Decimal_to_Hex(10)
+Decimal_to_Hex(16)
+12 > 5
+100 > 99.9
+-45 < -46
+-45 < 0
+50.0000000 = 50.00000000
+-1 = -1.0000001
+sin((40+30*(-2)/6 - (3!)*ceil(3.6^(1/2))))
+ceil(0.36^(1/2))
+floor(0.36^(1/2))

@@ -3,6 +3,7 @@
 #include <ctype.h>
 #include <math.h>
 #include "calc_function.h"
+#include "output_file.h"
 #define YYSTYPE double
 static int answer = 0;
 static char* str;
@@ -23,9 +24,9 @@ static char* str;
 %%
 
 calclist:/**/
-  |calclist exp EOL { answer = $2; printf("= %lf\n",$2);}
-  |calclist digit_convert EOL {printf("= %s\n", str);}
-  |calclist cmp EOL {printf("= %s\n", str);}
+  |calclist exp EOL { answer = $2; output_file_d($2); printf("= %lf\n",$2);}
+  |calclist digit_convert EOL {output_file_s(str); printf("= %s\n", str);}
+  |calclist cmp EOL {output_file_s(str); printf("= %s\n", str);}
   ;
 
 digit_convert:exp {$$ = $1;}
@@ -74,6 +75,7 @@ term:NUMBER {$$=$1;}
 %%
 
 main(int argc,char **argv){
+  clear_file();
 	yyparse();
 }
 

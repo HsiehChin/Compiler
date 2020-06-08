@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <ctype.h>
 #include <math.h>
+#include <string.h>
 #include "calc_function.h"
 #include "output_file.h"
 #define YYSTYPE double
@@ -20,6 +21,7 @@ static char* str;
 %token ANS
 %token MOD PERCENT CEIL FLOOR POW
 %token GREATER LESS EQUAL
+%token VEC
 
 %%
 
@@ -54,9 +56,13 @@ exp:factor {$$ = $1;}
 
 factor:term {$$=$1;}
   |factor MUL term{$$=$1*$3;}
-  |factor DIV term{if($3 == 0) 
-                    yyerror(0, "divide by zero");
-                    $$=$1/$3;}
+  |factor DIV term{if($3 == 0.0){
+                    yyerror("divide by zero");
+                  }
+                  else{
+                    $$=$1/$3;
+                  }
+                }
   |factor MOD term{$$=(int)$1%(int)$3;}
   |factor POW term{$$=pow($1, $3);}
   ;
@@ -64,6 +70,7 @@ factor:term {$$=$1;}
 term:NUMBER {$$=$1;}
   |FLOAT {$$=$1;}
   |ANS   {$$=answer;}
+  |VEC   {$$=vector();}
   |ABS exp ABS{$$=$2>=0?$2:-$2;}
   |LEFT_PAREN exp RIGHT_PAREN{$$=$2;}
   |PERM LEFT_PAREN exp COMMA exp RIGHT_PAREN{$$ = permutation($3, $5);}
@@ -81,5 +88,5 @@ main(int argc,char **argv){
 
 yyerror(char *s)
 {
- fprintf(stderr,"error:%s\n",s);
+   fprintf(stderr,"error:%s\n",s);
 }

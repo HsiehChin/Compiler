@@ -39,6 +39,7 @@
 "="     {return EQUAL;}
 
 "ANS"   {return ANS;}
+"vec"   {return VEC;}
 
 [0-9]+ 	{sscanf(yytext,"%lf",&yylval);return NUMBER;}
 [0-9]+\.[0-9]+ { sscanf(yytext,"%lf",&yylval); return NUMBER;}

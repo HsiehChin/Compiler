@@ -7,4 +7,5 @@ int combination(int n, int r);
 char* decimal_to_binary(int n);
 char* decimal_to_hex(int n);
 char* decimal_to_octal(int n);
+double vector();
 #endif //CALC_FUNCTION_H_

@@ -29,10 +29,14 @@
 ","     {return COMMA;}
 
 "mod"   {return MOD;}
+"fmod"  {return FMOD;}
 "%"     {return PERCENT;}
 "ceil"     {return CEIL;}
 "floor"     {return FLOOR;}
 "^"     {return POW;}
+"log"   {return LOG;}
+"ln"    {return LN;}
+
 
 ">"     {return GREATER;}
 "<"     {return LESS;}

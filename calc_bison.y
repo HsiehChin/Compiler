@@ -19,7 +19,7 @@ static char* str;
 %token DECIMAL2BINARY DECIMAL2OCTAL DECIMAL2HEX
 %token EOL
 %token ANS
-%token MOD PERCENT CEIL FLOOR POW
+%token MOD FMOD PERCENT CEIL FLOOR POW LOG LN
 %token GREATER LESS EQUAL
 %token VEC
 
@@ -51,6 +51,8 @@ exp:factor {$$ = $1;}
   |SIN factor {$$=sin($2);}
   |COS factor {$$=cos($2);}
   |TAN factor {$$=tan($2);}
+  |LOG factor {$$=log10($2);}
+  |LN  factor {$$=log($2);}
   |exp EXCLA_MARK {$$ = factorial((int)$1);}
   ;
 
@@ -64,6 +66,7 @@ factor:term {$$=$1;}
                   }
                 }
   |factor MOD term{$$=(int)$1%(int)$3;}
+  |factor FMOD term{$$=fmod($1, $3);}
   |factor POW term{$$=pow($1, $3);}
   ;
 

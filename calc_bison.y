@@ -3,6 +3,7 @@
 #include <ctype.h>
 #include <math.h>
 #include <string.h>
+#include <stdlib.h>
 #include "calc_function.h"
 #include "output_file.h"
 #define YYSTYPE double
@@ -35,6 +36,7 @@ calclist:/**/
                     }
   |calclist digit_convert EOL {output_file_s(str); printf("= %s\n", str);}
   |calclist cmp EOL {output_file_s(str); printf("= %s\n", str);}
+  |calclist EOL{printf("BYE BYE :D)\n");exit(0);}
   ;
 
 digit_convert:exp {$$ = $1;}
@@ -65,7 +67,8 @@ exp:factor {$$ = $1;}
 factor:term {$$=$1;}
   |factor MUL term{$$=$1*$3;}
   |factor DIV term{if($3 == 0.0){
-                    yyerror("divide by zero");
+                    $$ = -1;
+                    yyerror("Return -1 means divide by zero");
                   }
                   else{
                     $$=$1/$3;

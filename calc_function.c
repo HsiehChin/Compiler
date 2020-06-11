@@ -92,8 +92,8 @@ char* decimal_to_octal(int n){
 
 void show_vec(double *vec, int size){
   int i;
-  printf("ans:(");
-  for(i = 0; i < size; i++) printf("%lf ", vec[i]);
+  printf("answer:(");
+  for(i = 0; i < size; i++) printf("%.2lf ", vec[i]);
   printf(")\n");
 }
 
@@ -134,18 +134,14 @@ void vec_plus(double *v1, double *v2, int size){
   int i;
   double tmp[10];
   for(i = 0; i < size; i++) tmp[i] = v1[i] + v2[i];
-  printf("answer: (");
-  for(i = 0; i < size; i++) printf("%lf ", tmp[i]);
-  printf(")\n");
+  show_vec(tmp, size);
 }
 
 void vec_minus(double *v1, double *v2, int size){
   int i;
   double tmp[10];
   for(i = 0; i < size; i++) tmp[i] = v1[i] - v2[i];
-  printf("answer: (");
-  for(i = 0; i < size; i++) printf("%lf ", tmp[i]);
-  printf(")\n");
+  show_vec(tmp, size);
 }
 
 double vec_inner(double *v1, double *v2, int size){
@@ -161,9 +157,7 @@ void vec_outer(double *v1, double *v2, int size){
   tmp[0] = v1[1]*v2[2]-v1[2]*v2[1];
   tmp[1] = v1[2]*v2[0]-v1[0]*v2[2];
   tmp[2] = v1[0]*v2[1]-v1[1]*v2[0];
-  printf("answer: (");
-  for(i = 0; i < size; i++) printf("%lf ", tmp[i]);
-  printf(")\n");
+  show_vec(tmp, size);
 }
 
 int check_size_zero(int size){//for one vector
@@ -186,12 +180,12 @@ double vector(){
     v1 = (double*)malloc(sizeof(double)*size1);
     temp1 = (double*)malloc(sizeof(double)*size1);
     for(i = 0;i < size1; i++) scanf("%lf", &v1[i]);
-    printf("v1:");
+    printf("v1:(");
     for(i = 0;i < size1; i++) {
-      printf("%lf ", v1[i]);
+      printf("%.2lf ", v1[i]);
       temp1[i] = v1[i];
     }
-    printf("\n");
+    printf(")\n");
   }
   printf("vector2 size:");
   scanf("%d", &size2);
@@ -200,12 +194,12 @@ double vector(){
     v2 = (double*)malloc(sizeof(double)*size2);
     temp2 = (double*)malloc(sizeof(double)*size2);
     for(i = 0;i < size2; i++) scanf("%lf", &v2[i]);
-    printf("v2:");
+    printf("v2:(");
     for(i = 0;i < size2; i++) {
-      printf("%lf ", v2[i]);
+      printf("%.2lf ", v2[i]);
       temp2[i] = v2[i];
     }
-    printf("\n");
+    printf(")\n");
   }
   while(1){
     double ans;
@@ -235,7 +229,7 @@ double vector(){
             if(num == 1) ans = (vec_id == 1) ? median(temp1, size1) : median(temp2, size2);
             else if(num == 2) ans = (vec_id == 1) ? max(temp1, size1) : max(temp2, size2);
             else if(num == 3) ans = (vec_id == 1) ? min(temp1, size1) : min(temp2, size2);
-            printf("ans = %lf\n", ans);
+            printf("answer = %.2lf\n", ans);
           }
         }
       }
@@ -247,7 +241,7 @@ double vector(){
           else if(num == 5) vec_minus(v1, v2, size1);
           else if(num == 6) {
             ans = vec_inner(v1, v2, size1);
-            printf("ans = %lf\n", ans);
+            printf("answer = %.2lf\n", ans);
           }
         }
       }

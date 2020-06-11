@@ -1,14 +1,14 @@
-#include<stdio.h>
+#include <stdio.h>
+#include <stdbool.h>
 FILE *fout;
 
-void output_file_d(double test){
+void output_file_d(double test, bool type){
     fout = fopen("out_test_code.txt","a");
     if(fout == NULL){
         printf("Fail to open out_test_code.txt!!!\n");
         return;
     }
-    fprintf(fout, "%.6f\n", test);
-
+    (type == true)? fprintf(fout, "%d\n", (int)test):fprintf(fout, "%.4f\n", test);
     fclose(fout);
 }
 

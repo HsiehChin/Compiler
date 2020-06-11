@@ -26,7 +26,13 @@ static char* str;
 %%
 
 calclist:/**/
-  |calclist exp EOL { answer = $2; output_file_d($2); printf("= %lf\n",$2);}
+  |calclist exp EOL { answer = $2; output_file_d($2, check_type($2)); 
+                      if(check_type($2)){
+                        printf("= %d\n", (int)$2);
+                      } else {
+                        printf("= %.4f\n", $2);
+                      }
+                    }
   |calclist digit_convert EOL {output_file_s(str); printf("= %s\n", str);}
   |calclist cmp EOL {output_file_s(str); printf("= %s\n", str);}
   ;

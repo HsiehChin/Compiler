@@ -1,4 +1,5 @@
-#include<stdio.h>
+#include <stdio.h>
+#include <stdbool.h>
 
 int factorial(int a);
 int permutation(int n, int r);
@@ -6,6 +7,13 @@ int combination(int n, int r);
 char* decimal_to_binary(int n);
 char* decimal_to_hex(int n);
 char* decimal_to_octal(int n);
+
+bool check_type(double answer){
+  double tmp = answer;
+  tmp*= 10000.0;
+  tmp = (int)tmp%10000;
+  return (tmp==0.0)?true:false;
+}
 
 int factorial(int a){
   return (a<1)? 1 : a*factorial(a-1);

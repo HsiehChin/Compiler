@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdbool.h>
+#include<math.h>
 
 int factorial(int a);
 int permutation(int n, int r);
@@ -7,6 +8,10 @@ int combination(int n, int r);
 char* decimal_to_binary(int n);
 char* decimal_to_hex(int n);
 char* decimal_to_octal(int n);
+void print(int size, int i, double n);
+void print_double_ans(int size, int crt_size, double n);
+void print_int_ans(int size, int crt_size, int n);
+
 
 bool check_type(double answer){
   double tmp = answer;
@@ -257,4 +262,128 @@ double vector(){
     }
   }
   return 0;
+}
+
+double calculus(){
+  double *v1;
+  int size;
+  int num, i;
+  printf("please enter your highest exponential size: ");
+  scanf("%d", &size);
+  if(size >= 0){
+    printf("please enter constant term, separated by one space: ");
+    v1 = (double*)malloc(sizeof(double)*size);
+    for(i = size;i >= 0; i--) scanf("%lf", &v1[i]);
+    if(size > 0 && v1[size] == 0) {
+      printf("Illegal input!\n");
+      printf("Return 0 means leave calculus successful\n"); 
+      return 0;
+    }
+    printf("your polynomial: ");
+    for(i = size;i >= 0; i--) {
+      print(size, i, v1[i]);
+    }
+    printf("\n");
+  }
+  while(1){
+    double ans;
+    if(size >= 0){
+      printf("1 : differential, 2 : integral, -1 : leave\n");
+      scanf("%d", &num);
+      getchar();
+      printf("ans = ");
+      if(num == 1){
+        if(size == 0) printf("0");
+        else {
+          for(i = size; i >= 1; i--){
+            double constant = (double)v1[i]*(double)i;
+            print(size-1, i-1, constant);
+          }
+        }
+        printf("\n");
+      }
+      else if(num == 2){
+        if(size == 0 && v1[size] == 0) printf("0");
+        else {
+          for(i = size; i >= 0; i--){
+            double constant = (double)v1[i] / (double)(i+1);
+            print(size+1, i+1, constant);
+          }
+        }
+        printf("\n");
+      }
+      else if(num == -1) {
+        printf("Return 0 means leave calculus successful\n"); 
+        return 0;
+      }
+
+    }
+  }
+}
+
+void print(int size, int i, double n){
+  if((n > 0 && n - (int)n > 0) || (n < 0 && n - (int)n < 0)) {
+    print_double_ans(size, i, n);
+  }
+  else {
+    print_int_ans(size, i, (int)n);
+  }
+}
+
+void print_double_ans(int size, int crt_size, double n){
+  if(size == 0) printf("%.4lf", n);
+  else if(size == 1) {
+      if(n == 1) printf("x");
+      else if(n == -1) printf("-x");
+      else printf("%.4lfx", n);
+  }
+  else if(crt_size == size) {
+    printf("%.4lfx^%d", n, crt_size);
+  }
+  else {
+    char sign = '+';
+    if(n < 0){
+      sign = '-';
+      n *= (-1);
+    }
+    if(crt_size == 1) {
+      printf(" %c %.4lfx", sign, n);
+    }
+    else if(crt_size == 0) printf(" %c %.4lf", sign, n);
+    else {
+      printf(" %c %.4lfx^%d", sign, n, crt_size);
+    }
+  }
+}
+
+void print_int_ans(int size, int crt_size, int n){
+  if(size == 0) printf("%d", n);
+  else if(n != 0) {
+    if(size == 1) {
+      if(n == 1) printf("x");
+      else if(n == -1) printf("-x");
+      else printf("%dx", n);
+    }
+    else if(crt_size == size) {
+      if(n == 1) printf("x^%d", crt_size);
+      else if(n == -1) printf("-x^%d", crt_size);
+      else printf("%dx^%d", n, crt_size);
+    }
+    else {
+      char sign = '+';
+      if(n < 0){
+        sign = '-';
+        n *= (-1);
+      }
+      if(crt_size == 1) {
+        if(n == 1) printf(" %c x", sign);
+        else printf(" %c %dx", sign, n);
+      }
+      else if(crt_size == 0) printf(" %c %d", sign, n);
+      else {
+        if(n == 1)  printf(" %c x^%d", sign, crt_size);
+        else printf(" %c %dx^%d", sign, n, crt_size);
+      }
+    }
+  }
 }

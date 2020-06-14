@@ -45,6 +45,8 @@
 "ANS"   {return ANS;}
 "vec"   {return VEC;}
 
+"calculus"  {return CALCULUS;}
+
 [0-9]+ 	{sscanf(yytext,"%lf",&yylval);return NUMBER;}
 [0-9]+\.[0-9]+ { sscanf(yytext,"%lf",&yylval); return NUMBER;}
 [A-Z]+ 	{return ALPHABET;}

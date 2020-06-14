@@ -23,6 +23,7 @@ static char* str;
 %token MOD FMOD PERCENT CEIL FLOOR POW LOG LN
 %token GREATER LESS EQUAL
 %token VEC
+%token CALCULUS
 
 %%
 
@@ -83,6 +84,7 @@ term:NUMBER {$$=$1;}
   |FLOAT {$$=$1;}
   |ANS   {$$=answer;}
   |VEC   {$$=vector();}
+  |CALCULUS {$$=calculus();}
   |ABS exp ABS{$$=$2>=0?$2:-$2;}
   |LEFT_PAREN exp RIGHT_PAREN{$$=$2;}
   |PERM LEFT_PAREN exp COMMA exp RIGHT_PAREN{$$ = permutation($3, $5);}

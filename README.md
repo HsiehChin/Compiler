@@ -1,6 +1,6 @@
 # Tricky Compiler
-## 執行專案:
- - 於cmd輸入.\auto_make.bat 即可執行程式。 
+## Usage:
+ - type .\auto_make.bat on the console log.
 ## AUTHOR:
  - **Ya Fang Hsieh** [HsiehChin](https://github.com/HsiehChin)
  - **Pei Tzu Li** [muyumiya1201](https://github.com/muyumiya1201)
